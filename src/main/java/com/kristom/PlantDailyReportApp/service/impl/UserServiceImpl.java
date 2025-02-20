@@ -1,6 +1,5 @@
 package com.kristom.PlantDailyReportApp.service.impl;
 
-
 import com.kristom.PlantDailyReportApp.domain.dtos.UserDto;
 import com.kristom.PlantDailyReportApp.domain.entities.User;
 import com.kristom.PlantDailyReportApp.mapper.UserMapper;
@@ -23,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void signUp(UserDto userDto){
+    public UserDto signUp(UserDto userDto){
         String username = userDto.getUsername();
         Optional<User> existingUser = userRepository.findByUsername(username);
         if (existingUser.isPresent()){
@@ -32,7 +31,8 @@ public class UserServiceImpl implements UserService {
         User user = UserMapper.INSTANCE.toUser(userDto);
         String password = passwordEncoder.encode(user.getPassword());
         user.setPassword(password);
-        userRepository.save(user);
+        User registeredUser = userRepository.save(user);
+        return UserMapper.INSTANCE.toUserDto(registeredUser);
     }
 
 }

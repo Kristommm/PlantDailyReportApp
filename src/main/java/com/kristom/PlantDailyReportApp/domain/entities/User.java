@@ -1,16 +1,17 @@
 package com.kristom.PlantDailyReportApp.domain.entities;
 
 
-import com.kristom.PlantDailyReportApp.domain.Role;
+import com.kristom.PlantDailyReportApp.domain.Department;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Getter
-@Setter
+@Data
 @Table(name = "users")
 public class User {
 
@@ -24,7 +25,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Department department;
 
 }
