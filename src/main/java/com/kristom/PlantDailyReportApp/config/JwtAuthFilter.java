@@ -25,7 +25,6 @@ import java.nio.file.AccessDeniedException;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final UserDetailsServiceImpl userDetailsService;
-    private final ObjectMapper objectMapper;
 
 
     @Override
